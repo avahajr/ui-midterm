@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 current_id = 2
-data = [
+top3 = [
     {
         "id": 1,
         "name": "michael scott"
@@ -17,30 +17,20 @@ data = [
 ]
 
 # ROUTES
-
-@app.route('/hi')
-def hello():
-   return 'Hi hi hi hi hi hi hi hi hi'
-
-
+# Home page
 @app.route('/')
-def hello_world():
-   return render_template('hello_world.html')   
+def home():
+   return render_template('home.html', top3=top3)
 
 
-@app.route('/hello/<name>')
-def hello_name(name=None):
-    return render_template('hello_name.html', name=name) 
-
-
-@app.route('/people')
-def people():
-    return render_template('people.html', data=data)  
+# @app.route('/people')
+# def people():
+#     return render_template('people.html', top3=top3)
 
 
 # AJAX FUNCTIONS
 
-# ajax for people.js
+# ajax for farmer.js
 @app.route('/add_name', methods=['GET', 'POST'])
 def add_name():
     global data 
@@ -65,7 +55,7 @@ def add_name():
 
 
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run(debug = True, port=6969)
 
 
 
