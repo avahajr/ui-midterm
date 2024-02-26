@@ -5,8 +5,19 @@
 <script>
     let top3 = {{top3|tojson}}
     console.log(top3)
+    // display top 3
+    $(document).ready ( function () {
+        top3.forEach((market) => {
+            let top3Market = $("<li>")
+            console.log(market.market_name)
+            top3Market.append(market.market_name)
+
+            $('#top3').append(top3Market)
+        })
+    })
 </script>
 
-<b>Hello world!</b>
+<h1>Top 3 markets:</h1>
+<ul id="top3"></ul>
 
 {% endblock %}
