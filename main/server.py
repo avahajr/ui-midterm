@@ -152,10 +152,17 @@ def home():
 def search():
     search_term = request.json['search_term']
     results = get_results(search_term)
-    msg = f"No results found for '{search_term}'" if len(results) == 0 else f"Showing results for '{search_term}'"
+    msg = "No results found" if len(results) == 0 else f"Showing results for '{search_term}'"
     return render_template('search.html', results=results, msg=msg)
 
-
+@app.route('/view/<rec_id>', methods=['GET', 'POST'])
+def view(rec_id):
+    global data
+    entry = None
+    for d in data:
+        if 'id' in d and d['id'] == rec_id:
+            entry = d
+    return render_template('view.html', entry=entry)
 
 
 # AJAX FUNCTIONS

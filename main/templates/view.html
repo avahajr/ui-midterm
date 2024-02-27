@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{entry['market_name']}}</h2>
+<h5>{{entry["street_address"]}}, {{entry["borough"]}}</h5>
+<div> coordinates:
+    <span>{{entry['latitude']}}, </span>
+    <span>{{entry['longitude']}} </span>
+</div>
+<div>
+    <span>{{"/".join(entry["days"])}}</span>
+    {% if entry['year_round'] == "true" %}
+    <span>(year-round)</span>
+    {% endif %}
+</div>
+<img class="img-fluid" src="{{entry['image']}}">
+
+<div>At this market:</div>
+<ul>
+    {% for vendor in entry['vendors_list'] %}
+    <li>{{vendor}}</li>
+    {% endfor %}
+</ul>
+<div>{{entry["summary"]}}</div>
+
+{% endblock %}
