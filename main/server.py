@@ -137,7 +137,9 @@ data = [{
 ]
 
 top3 = data[:3]
-
+def get_results(search_term):
+    global data
+    return [record for record in data if search_term.lower() in record['market_name'].lower()]
 
 # ROUTES
 # Home page
@@ -146,9 +148,14 @@ def home():
     return render_template('home.html', top3=top3)
 
 
-# @app.route('/people')
-# def people():
-#     return render_template('people.html', top3=top3)
+@app.route('/search', methods=['POST', 'GET'])
+def search():
+    search_term = request.json['search_term']
+    results = get_results(search_term)
+    msg = f"No results found for '{search_term}'" if len(results) == 0 else f"Showing results for '{search_term}'"
+    return render_template('search.html', results=results, msg=msg)
+
+
 
 
 # AJAX FUNCTIONS
@@ -174,6 +181,7 @@ def home():
 #
 #     #send back the WHOLE array of data, so the client can redisplay it
 #     return jsonify(data = data)
+
 
 
 if __name__ == '__main__':

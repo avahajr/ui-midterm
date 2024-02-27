@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div id="msg">{{ msg }}</div>
+<ul id="results">
+    {% for result in results %}
+    <li>{{ result['market_name'] }}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+
