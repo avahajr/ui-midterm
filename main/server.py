@@ -27,7 +27,7 @@ data = [{
      "year_round": "false",
      "latitude": 40.7903,
      "longitude": -73.945635,
-     "vendors_list": ["bread guy", "lavender guy", "farmer1"],
+     "vendors_list": ["bread guy", "lavender guy", "cheese guy"],
      "summary": "Harvest Home Farmer’s Market provides low-income communities with access to farm fresh local produce and the education to achieve healthier lifestyles. Harvest Home Farmer's Market is a New York City-based, 501(c)3, non-profit organization dedicated to increasing access to local, farm-fresh produce in low-income neighborhoods. Founded in 1993, our markets create community gathering places that educate the public about health and nutrition, supports regional agriculture and provides job opportunities. Our farmer's markets are open six days a week during the farmer's market season; serving all members of each community."
      },
     {
@@ -148,9 +148,8 @@ def home():
     return render_template('home.html', top3=top3)
 
 
-@app.route('/search', methods=['POST', 'GET'])
-def search():
-    search_term = request.json['search_term']
+@app.route('/search/<search_term>', methods=['GET'])
+def search(search_term):
     results = get_results(search_term)
     msg = "No results found" if len(results) == 0 else f"Showing results for '{search_term}'"
     return render_template('search.html', results=results, msg=msg)

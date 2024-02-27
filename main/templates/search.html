@@ -6,9 +6,9 @@
 <div id="msg">{{ msg }}</div>
 <ul id="results">
     {% for result in results %}
-    <a href="./view/{{ result['id'] }}">
-    <li>{{ result['market_name'] }}</li>
-    </a>
+
+    <li><a href="/view/{{ result['id'] }}">{{ result['market_name'] }}</a></li>
+
     {% endfor %}
 </ul>
 

@@ -5,7 +5,9 @@
 <h2>Top 3 markets:</h2>
 <ul >
     {% for top in top3 %}
-    <li>{{top['market_name']}}</li>
+
+    <li><a href="/view/{{top['id']}}">{{top['market_name']}}</a></li>
+
     {% endfor %}
 </ul>
 
