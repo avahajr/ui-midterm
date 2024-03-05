@@ -1,10 +1,11 @@
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
+# import geocoder
 
 app = Flask(__name__)
 
-current_id = 1
+current_id = 10
 data = [{
     "id": "1",
     "market_name": "Columbia Greenmarket",
@@ -137,9 +138,14 @@ data = [{
 ]
 
 top3 = data[:3]
+
+
 def get_results(search_term):
     global data
-    return [record for record in data if search_term.lower() in record['market_name'].lower()]
+    return [record for record in data if
+            search_term.lower() in record['market_name'].lower() or search_term.lower() in " ".join(
+                record['vendors_list']).lower()]
+
 
 # ROUTES
 # Home page
@@ -151,10 +157,11 @@ def home():
 @app.route('/search/<search_term>', methods=['GET'])
 def search(search_term):
     results = get_results(search_term)
-    msg = "No results found" if len(results) == 0 else f"Showing results for '{search_term}'"
+    msg = "No results found" if len(results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
     return render_template('search.html', results=results, msg=msg)
 
-@app.route('/view/<rec_id>', methods=['GET', 'POST'])
+
+@app.route('/view/<rec_id>', methods=['GET'])
 def view(rec_id):
     global data
     entry = None
@@ -164,30 +171,36 @@ def view(rec_id):
     return render_template('view.html', entry=entry)
 
 
-# AJAX FUNCTIONS
+@app.route('/add', methods=['GET', 'POST'])
+def add_entry():
+    global current_id
+    if request.method == 'POST':
+        # Handle form submission
+        json_data = request.get_json()
+        address = json_data['street_address']
 
-# ajax for farmer.js
-# @app.route('/add_name', methods=['GET', 'POST'])
-# def add_name():
-#     global data
-#     global current_id
-#
-#     json_data = request.get_json()
-#     name = json_data["name"]
-#
-#     # add new entry to array with
-#     # a new id and the name the user sent in JSON
-#     current_id += 1
-#     new_id = current_id
-#     new_name_entry = {
-#         "name": name,
-#         "id":  current_id
-#     }
-#     data.append(new_name_entry)
-#
-#     #send back the WHOLE array of data, so the client can redisplay it
-#     return jsonify(data = data)
+        lat, lng = 0, 0
+        new_entry = {
+            "id": str(current_id + 1),
+            "market_name": json_data.get('market_name'),
+            "borough": json_data.get('borough'),
+            "image": json_data.get('image'),
+            "street_address": address,
+            "days": json_data.get('days'),
+            "year_round": json_data.get('year_round'),
+            "latitude": lat,
+            "longitude": lng,
+            "vendors_list": [v.strip() for v in json_data.get('vendors_list')],
+            "summary": json_data.get('summary')
+        }
 
+        # Update the data array
+        data.append(new_entry)
+        current_id += 1
+        return data
+    else:
+        # Render the form for GET request
+        return render_template('add.html')
 
 
 if __name__ == '__main__':

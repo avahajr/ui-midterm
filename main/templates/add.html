@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Add a market!</h1>
+
+<form>
+    <div class="row">
+        <!-- Market Name -->
+        <div class="mb-3 col">
+            <label for="market_name" class="form-label">Market Name:</label>
+            <input type="text" class="form-control" id="market_name" name="market_name" required>
+        </div>
+
+        <!-- Borough -->
+        <div class="mb-3 col">
+            <label for="borough" class="form-label">Borough:</label>
+            <select class="form-select" id="borough" name="borough" required>
+                <option value="Manhattan">Manhattan</option>
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Queens">Queens</option>
+                <option value="Staten Island">Staten Island</option>
+                <option value="Bronx">Bronx</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-3">
+        <label for="image" class="form-label">Image URL:</label>
+        <input type="text" class="form-control" id="image" name="image" required>
+    </div>
+
+    <!-- Street Address -->
+    <div class="mb-3">
+        <label for="street_address" class="form-label">Street Address:</label>
+        <input type="text" class="form-control" id="street_address" name="street_address" required>
+    </div>
+
+    <!-- Days -->
+    <div class="mb-3">
+        <label class="form-label">Days:</label>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_sunday" name="days" value="Sunday">
+                <label class="form-check-label" for="day_sunday">Sunday</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_monday" value="Monday">
+                <label class="form-check-label" for="day_monday">Monday</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_tuesday" name="days" value="Tuesday">
+                <label class="form-check-label" for="day_tuesday">Tuesday</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_wednesday" name="days" value="Wednesday">
+                <label class="form-check-label" for="day_wednesday">Wednesday</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_thursday" name="days" value="Thursday">
+                <label class="form-check-label" for="day_thursday">Thursday</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_friday" name="days" value="Friday">
+                <label class="form-check-label" for="day_friday">Friday</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="day_saturday" name="days" value="Saturday">
+                <label class="form-check-label" for="day_saturday">Saturday</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Year Round -->
+    <div class="mb-3">
+        <label class="form-label">Year-Round?:</label>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="year_round_true" name="year_round" value="true">
+                <label class="form-check-label" for="year_round_true">True</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="year_round_false" name="year_round" value="false">
+                <label class="form-check-label" for="year_round_false">False</label>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Vendors List -->
+    <div class="mb-3">
+        <label class="form-label" for="vendors">Vendors:</label>
+        <input class="form-control" name="vendors" type="text" id="vendors" placeholder="abcef farms, wxyz orchard, ...">
+    </div>
+
+    <!-- Summary -->
+    <div class="mb-3">
+        <label for="summary" class="form-label">Summary:</label>
+        <textarea class="form-control" id="summary" name="summary" rows="4" required></textarea>
+    </div>
+
+    <button id="submit-form" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
