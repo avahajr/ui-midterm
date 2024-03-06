@@ -3,12 +3,13 @@
 {% block content %}
 <h1>Add a market!</h1>
 
-<form>
+<form id="add_market">
     <div class="row">
         <!-- Market Name -->
         <div class="mb-3 col">
             <label for="market_name" class="form-label">Market Name:</label>
             <input type="text" class="form-control" id="market_name" name="market_name" required>
+            <label class='warning' for="market_name"></label>
         </div>
 
         <!-- Borough -->
@@ -24,16 +25,27 @@
         </div>
     </div>
 
+
+
+    <div class="row">
+        <!-- Street Address -->
+        <div class="mb-3 col-10">
+            <label for="street_address" class="form-label">Street Address:</label>
+            <input type="text" class="form-control" id="street_address" name="street_address" required>
+            <label class='warning' for="street_address"></label>
+        </div>
+        <div class="mb-3 col-2">
+            <label for="zip" class="form-label">ZIP:</label>
+            <input class="form-control" id="zip" name="zip" required>
+            <label class='warning' id="zipWarning"></label>
+        </div>
+    </div>
+
     <!-- Image URL -->
     <div class="mb-3">
         <label for="image" class="form-label">Image URL:</label>
         <input type="text" class="form-control" id="image" name="image" required>
-    </div>
-
-    <!-- Street Address -->
-    <div class="mb-3">
-        <label for="street_address" class="form-label">Street Address:</label>
-        <input type="text" class="form-control" id="street_address" name="street_address" required>
+        <label for="image" class="warning"></label>
     </div>
 
     <!-- Days -->
@@ -45,7 +57,7 @@
                 <label class="form-check-label" for="day_sunday">Sunday</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="day_monday" value="Monday">
+                <input class="form-check-input" type="checkbox" id="day_monday" name="days" value="Monday">
                 <label class="form-check-label" for="day_monday">Monday</label>
             </div>
             <div class="form-check form-check-inline">
@@ -71,6 +83,7 @@
                 <input class="form-check-input" type="checkbox" id="day_saturday" name="days" value="Saturday">
                 <label class="form-check-label" for="day_saturday">Saturday</label>
             </div>
+            <div id="daysWarning" class="warning"></div>
         </div>
     </div>
 
@@ -87,19 +100,25 @@
                 <label class="form-check-label" for="year_round_false">False</label>
             </div>
         </div>
+        <label class='warning' id="yearRoundWarning"></label>
+
     </div>
 
 
     <!-- Vendors List -->
     <div class="mb-3">
-        <label class="form-label" for="vendors">Vendors:</label>
-        <input class="form-control" name="vendors" type="text" id="vendors" placeholder="abcef farms, wxyz orchard, ...">
+        <label class="form-label" for="vendors_list">Vendors:</label>
+        <input class="form-control" name="vendors_list" type="text" id="vendors_list"
+               placeholder="abcef farms, wxyz orchard, ...">
+        <label class="warning" id="vendors_list_warning"></label>
+
     </div>
 
     <!-- Summary -->
     <div class="mb-3">
         <label for="summary" class="form-label">Summary:</label>
         <textarea class="form-control" id="summary" name="summary" rows="4" required></textarea>
+        <label class="warning" id="summary_warning"></label>
     </div>
 
     <button id="submit-form" class="btn btn-primary">Submit</button>
