@@ -1,8 +1,16 @@
+
+:root {
+    --accent-color: #57A070;
+}
+
 .warning {
     color: red;
 }
 #content {
     margin-top: 3em;
+}
+#navbar {
+    height: 10em;
 }
 
 .search_hit {
@@ -18,8 +26,54 @@
 }
 
 .grey {
-    color: gray;
+    color: var(--bs-gray);
 }
 .indent {
     margin-left: 2em;
+}
+.accent {
+    color:var(--accent-color)!important
+}
+.bold {
+    font-weight: 500;
+}
+.slim {
+    font-weight: 200;
+}
+#view_year_round {
+    font-size: smaller;
+}
+#view_days {
+    font-size: 20px;
+}
+#view_borough {
+    font-size: large;
+}
+#view_address_info {
+    margin-top: 3em;
+}
+
+#view_street_address {
+    font-size: 26px;
+    color: var(--bs-gray-dark)
+}
+#view_vendor_heading {
+    font-size: 26px;
+    color: var(--bs-gray-dark)
+
+}
+.view_vendor {
+    color: var(--bs-gray-dark);
+    font-size: 20px;
+    margin-top: 5px;
+}
+#view_vendors_list {
+    margin-top: .5em;
+}
+#view_second_row {
+    margin-top: 3.5em;
+}
+#view_summary {
+    text-align: justify;
+    font-size: 18px;
 }

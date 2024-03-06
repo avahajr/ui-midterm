@@ -1,27 +1,58 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="row">
+    <div class="col-7">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>{{entry['market_name']}}</h2>
+            <div class='slim grey' id="view_borough">{{entry['borough']}}</div>
+        </div>
+        <div class=" d-flex justify-content-between align-items-center">
+            <div class="grey" id="view_days">{{formatted_days}}</div>
+            <div>
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="text-center">8am-4pm</div>
+                    {% if entry['year_round'] == 'true'%}
+                    <div id='view_year_round' class="accent bold">YEAR-ROUND</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <img src="{{entry['image']}}" class="img-fluid" alt="{{entry['market_name']}}">
+        </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-4">
+        <img src="/static/sample-map.jpg" class="img-fluid">
+        <div class="d-flex justify-content-center align-items-center">
+            <div id="view_address_info">
+                <div id="view_street_address" class="bold">{{entry['street_address']}}</div>
+                <div id="view_distance" class="slim grey">0.2 miles away</div>
+                <div id="view_walk_info" class="">
+                    <span class='grey' id="view_walk_time">3 min. walk</span> |
+                    <a class="accent bold">DIRECTIONS</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h2>{{entry['market_name']}}</h2>
-<h5>{{entry["street_address"]}}, {{entry["borough"]}}</h5>
-<div> coordinates:
-    <span>{{entry['latitude']}}, </span>
-    <span>{{entry['longitude']}} </span>
+    <div id="view_second_row" class="row">
+        <div class="col-3">
+            <div id="view_vendor_heading" class="bold">Vendors at this market</div>
+            <ul id="view_vendors_list">
+                {% for vendor in entry['vendors_list'] %}
+                <li class="view_vendor">{{vendor}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-9">
+            <p id="view_summary" class="grey">
+                {{entry['summary']}}
+            </p>
+        </div>
+    </div>
 </div>
-<div>
-    <span>{{formatted_days}}</span>
-    {% if entry['year_round'] == "true" %}
-    <span>(year-round)</span>
-    {% endif %}
-</div>
-<img class="img-fluid" src="{{entry['image']}}">
-
-<div>At this market:</div>
-<ul>
-    {% for vendor in entry['vendors_list'] %}
-    <li>{{vendor}}</li>
-    {% endfor %}
-</ul>
-<div>{{entry["summary"]}}</div>
 
 {% endblock %}
