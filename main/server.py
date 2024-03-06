@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
-# import geocoder
+import re
 
 app = Flask(__name__)
 
@@ -157,8 +157,16 @@ def home():
 @app.route('/search/<search_term>', methods=['GET'])
 def search(search_term):
     results = get_results(search_term)
+    highlighted_results = []
     msg = "No results found" if len(results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
-    return render_template('search.html', results=results, msg=msg)
+    for result in results:
+        highlighted_results.append({
+            "id": result['id'],
+            "market_name": re.sub(re.compile(re.escape(search_term), re.IGNORECASE), lambda match: f"<span class='search_hit'>{match.group()}</span>", result['market_name']),
+            "vendors_list": re.sub(re.compile(re.escape(search_term), re.IGNORECASE), lambda match: f"<span class='search_hit'>{match.group()}</span>", ", ".join(result['vendors_list']))
+        })
+
+    return render_template('search.html', msg=msg, results=highlighted_results)
 
 
 @app.route('/view/<rec_id>', methods=['GET'])

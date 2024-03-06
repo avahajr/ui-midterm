@@ -143,6 +143,7 @@ async function validateEntry() {
                 console.log("successfully submitted", data)
                 // clear all data fields
                 $("#add_market")[0].reset();
+                $("#market_name").focus();
             },
             error: function (e) {
                 console.error("while input was valid, there was an error adding new market:", e)

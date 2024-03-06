@@ -1,3 +1,10 @@
 .warning {
     color: red;
 }
+#content {
+    margin-top: 3em;
+}
+
+.search_hit {
+    background-color: lightgreen;
+}
