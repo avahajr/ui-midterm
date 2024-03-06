@@ -9,7 +9,7 @@
     <span>{{entry['longitude']}} </span>
 </div>
 <div>
-    <span>{{"/".join(entry["days"])}}</span>
+    <span>{{formatted_days}}</span>
     {% if entry['year_round'] == "true" %}
     <span>(year-round)</span>
     {% endif %}

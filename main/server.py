@@ -146,7 +146,19 @@ def get_results(search_term):
             search_term.lower() in record['market_name'].lower() or search_term.lower() in " ".join(
                 record['vendors_list']).lower()]
 
+def format_days_of_week(day_list):
+    if not day_list:
+        return "No days provided"
 
+    plural_days = [day + "s" for day in day_list]
+
+    if len(plural_days) == 1:
+        return plural_days[0]
+
+    formatted_days = ", ".join(plural_days[:-1])
+    formatted_days += f" and {plural_days[-1]}"
+
+    return formatted_days
 # ROUTES
 # Home page
 @app.route('/')
@@ -176,7 +188,7 @@ def view(rec_id):
     for d in data:
         if 'id' in d and d['id'] == rec_id:
             entry = d
-    return render_template('view.html', entry=entry)
+    return render_template('view.html', entry=entry, formatted_days=format_days_of_week(entry['days']))
 
 
 @app.route('/add', methods=['GET', 'POST'])
