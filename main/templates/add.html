@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
+<div id="success-msg"></div>
 <h1>Add a market!</h1>
 
 <form id="add_market">
@@ -24,7 +26,6 @@
             </select>
         </div>
     </div>
-
 
 
     <div class="row">
@@ -121,6 +122,6 @@
         <label class="warning" id="summary_warning"></label>
     </div>
 
-    <button id="submit-form" class="btn btn-primary">Submit</button>
+    <button id="add-entry-btn" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}

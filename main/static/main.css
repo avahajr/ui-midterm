@@ -6,5 +6,20 @@
 }
 
 .search_hit {
-    background-color: lightgreen;
+    background-color: lightgreen!important;
+}
+
+.listing {
+    margin: 1em 0;
+}
+
+.listing .title {
+    font-size: 20px;
+}
+
+.grey {
+    color: gray;
+}
+.indent {
+    margin-left: 2em;
 }

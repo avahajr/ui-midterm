@@ -7,7 +7,14 @@
 <ul id="results">
     {% for result in results %}
 
-    <li><a href="/view/{{ result['id'] }}">{{ result['market_name'] | safe }}</a></li>
+    <li class="listing">
+        <div class="title">
+            <a href="/view/{{ result['id'] }}">{{ result['market_name'] | safe }}</a>
+        </div>
+        <div class="grey">
+            {{result['vendors_list'] | safe }}
+        </div>
+    </li>
 
     {% endfor %}
 </ul>

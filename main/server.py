@@ -185,19 +185,19 @@ def add_entry():
     if request.method == 'POST':
         # Handle form submission
         json_data = request.get_json()
-        address = json_data['street_address']
 
-        lat, lng = 0, 0
         new_entry = {
             "id": str(current_id + 1),
             "market_name": json_data.get('market_name'),
             "borough": json_data.get('borough'),
             "image": json_data.get('image'),
-            "street_address": address,
+            "street_address": json_data.get('street_address'),
+            "zip": json_data.get('zip'),
+
             "days": json_data.get('days'),
             "year_round": json_data.get('year_round'),
-            "latitude": lat,
-            "longitude": lng,
+            "latitude": json_data.get('latitude'),
+            "longitude": json_data.get('longitude'),
             "vendors_list": [v.strip() for v in json_data.get('vendors_list')],
             "summary": json_data.get('summary')
         }
@@ -205,11 +205,20 @@ def add_entry():
         # Update the data array
         data.append(new_entry)
         current_id += 1
-        return data
+        return jsonify({'data': data, 'current_id': current_id})
     else:
         # Render the form for GET request
         return render_template('add.html')
+@app.route('/edit/<rec_id>', methods=['GET', 'POST'])
+def edit_entry(rec_id):
+    if request.method == 'GET':
+        entry_to_edit = None
+        for entry in data:
+            if entry['id'] == rec_id:
+                entry_to_edit = entry
+                break
 
+        return render_template('edit.html', entry=entry_to_edit)
 
 if __name__ == '__main__':
     app.run(debug=True, port=6969)

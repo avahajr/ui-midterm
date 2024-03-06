@@ -34,6 +34,7 @@ function isValidSearchTerm(search_term) {
 
 async function validateEntry() {
     $(".warning").empty();
+    $("#success-msg").empty();
 
     let checkboxes = $('input[name="days"]:checked')
     let selectedDays = checkboxes.map(function () {
@@ -144,6 +145,7 @@ async function validateEntry() {
                 // clear all data fields
                 $("#add_market")[0].reset();
                 $("#market_name").focus();
+                updateMessage(newEntry['market_name'], data['current_id'])
             },
             error: function (e) {
                 console.error("while input was valid, there was an error adding new market:", e)
@@ -152,6 +154,13 @@ async function validateEntry() {
     } else {
         console.error('something was wrong with the input.')
     }
+}
+
+function updateMessage(entry_name, entry_id) {
+    // use on submitting a new entry
+    $("#success-msg").append($(`<div class='alert alert-success' role='alert'>Successfully added ${entry_name}. <div><a href='/view/${entry_id}'>view new entry</a></div></div>`))
+
+
 }
 
 $(document).ready(function () {
@@ -168,9 +177,11 @@ $(document).ready(function () {
         doSearch(searchTerm);
     })
 
-    $("#submit-form").click(function (e) {
+    $("#add-entry-btn").click(function (e) {
         e.preventDefault();
         validateEntry();
     })
+
+    $("")
 
 })

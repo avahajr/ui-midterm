@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>Editing market</h1>
+<form id="edit_market">
+    <div class="row">
+        <!-- Market Name -->
+        <div class="mb-3 col">
+            <label for="market_name" class="form-label">Market Name:</label>
+            <input type="text" class="form-control" id="market_name" name="market_name" value="{{entry['market_name']}}"
+                   required>
+            <label class='warning' for="market_name"></label>
+        </div>
+
+        <!-- Borough -->
+        <div class="mb-3 col">
+            <label for="borough" class="form-label">Borough:</label>
+            <select class="form-select" id="borough" name="borough" required>
+                <option value="Manhattan" {% if entry[
+                'borough'] == 'Manhattan' %}selected{% endif %}>Manhattan</option>
+                <option value="Brooklyn" {% if entry[
+                'borough'] == 'Brooklyn' %}selected{% endif %}>Brooklyn</option>
+                <option value="Queens" {% if entry[
+                'borough'] == 'Queens' %}selected{% endif %}>Queens</option>
+                <option value="Bronx" {% if entry[
+                'borough'] == 'Bronx' %}selected{% endif %}>Bronx</option>
+                <option value="Staten Island" {% if entry[
+                'borough'] == 'Staten Island' %}selected{% endif %}>Staten Island</option>
+            </select>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <!-- Street Address -->
+        <div class="mb-3 col-10">
+            <label for="street_address" class="form-label">Street Address:</label>
+            <input type="text" class="form-control" id="street_address" name="street_address" required value="{{entry['street_address']}}">
+            <label class='warning' for="street_address"></label>
+        </div>
+        <div class="mb-3 col-2">
+            <label for="zip" class="form-label">ZIP:</label>
+            <input class="form-control" id="zip" name="zip" required value="{{entry['zip']}}">
+            <label class='warning' id="zipWarning"></label>
+        </div>
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-3">
+        <label for="image" class="form-label">Image URL:</label>
+        <input type="text" class="form-control" id="image" name="image" value="{{entry['image']}}" required>
+        <label for="image" class="warning"></label>
+    </div>
+
+    <!-- Days -->
+    <div class="mb-3">
+        <label class="form-label">Days:</label>
+        {% set days_checked = entry['days'] if entry['days'] else [] %}
+
+        {% for day in ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %}
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="day_{{ day|lower }}" name="days" value="{{ day }}" {% if
+                   day in days_checked %}checked{% endif %}>
+            <label class="form-check-label" for="day_{{ day|lower }}">{{ day }}</label>
+        </div>
+        {% endfor %}
+        <div id="daysWarning" class="warning"></div>
+    </div>
+
+    <!-- Year Round -->
+    <div class="mb-3">
+        <label class="form-label">Year-Round?:</label>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="year_round_true" name="year_round" value="true" {% if entry['year_round'] == 'true' %} checked {% endif %}>
+                <label class="form-check-label" for="year_round_true">True</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="year_round_false" name="year_round" value="false" {% if entry['year_round'] == 'false' %} checked {% endif %}>
+                <label class="form-check-label" for="year_round_false">False</label>
+            </div>
+        </div>
+        <label class='warning' id="yearRoundWarning"></label>
+
+    </div>
+
+
+    <!-- Vendors List -->
+    <div class="mb-3">
+        <label class="form-label" for="vendors_list">Vendors:</label>
+        <input class="form-control" name="vendors_list" type="text" id="vendors_list"
+               placeholder="abcef farms, wxyz orchard, ..." value="{{', '.join(entry['vendors_list'])}}">
+        <label class="warning" id="vendors_list_warning"></label>
+
+    </div>
+
+    <!-- Summary -->
+    <div class="mb-3">
+        <label for="summary" class="form-label">Summary:</label>
+        <textarea class="form-control" id="summary" name="summary" rows="4" required>{{entry['summary']}}</textarea>
+        <label class="warning" id="summary_warning"></label>
+    </div>
+    <button id="discard-changes-btn" class="btn btn-danger">Discard changes</button>
+    <button id="submit-changes-btn" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
