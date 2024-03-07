@@ -1,10 +1,12 @@
 
 :root {
-    --background: #e1e3d0;
+    --background: #ffff;
     --base-color: #5e8d66;
-    --accent-color: #e4d444;
-    --other-green: #aab164;
-    /*font-family: "Barlow", sans-serif!important;*/
+    --accent-color: #ffc107;
+    --button-hover: #699140;
+    --search-hit: rgba(169, 236, 103, 0.38);
+    --light-grey: rgba(0, 0, 0, 0.04)
+    /*--bs-font-sans-serif: "Barlow", sans-serif!important;*/
 }
 
 
@@ -13,7 +15,10 @@
 }
 
 #content {
+
     margin-top: 3em;
+    margin-bottom: 3em;
+
 }
 
 #navbarNavAltMarkup {
@@ -33,32 +38,40 @@
     box-shadow: 0px 1px 5px 0px rgba(194, 194, 194, 0.28);
     border-bottom-color: gray !important;
 }
+img.preview {
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
 .search_hit {
-    background-color: lightgreen !important;
+    background-color: var(--search-hit) !important;
 }
 
 #header-text {
-    font-family: "Barlow", sans-serif!important;
-    color: rgba(0, 0, 0, .7);
-    font-size: 60px;
+    font-family: "Barlow", sans-serif !important;
+    color: rgba(255, 255, 255, 1);
+    font-size: 70px;
     font-weight: 500;
 }
+
 #header-caption {
-    font-family: "Barlow", sans-serif!important;
-    color: rgba(0, 0, 0, .5);
+    font-family: "Barlow", sans-serif !important;
+    color: rgba(255, 255, 255,1);
+    /*color: rgba(0, 0, 0, .5);*/
     font-size: 25px;
     font-weight: 400;
 }
 
 #big-block {
-    background-color: #e1e3d0;
     border-radius: 5px;
     padding: 110px 140px;
-    width:  95%;
+    /*width: 95%;*/
     display: flex;
-    margin:auto;
+    margin: auto;
+    margin-bottom: 30px;
     gap: 5px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url("https://img.freepik.com/free-photo/green-vegetables-flat-lay-healthy-diet_53876-106109.jpg?t=st=1709784463~exp=1709788063~hmac=06ede07ba17b6cd61bfb698d47f3617a78873e9d2e8b951820f3e8dea07f8f06&w=2000");
 }
 
 .listing {
@@ -94,7 +107,7 @@
 }
 
 #view_days {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #view_borough {
@@ -135,17 +148,25 @@
     font-size: 18px;
 }
 
-/*#searchbar {*/
-/*    background-color: #e1e3d0;*/
-/*}*/
-#searchbtn {
-    color: var(--background);
-    background-color: var(--base-color);
-    border-color: #e1e3d0;
+
+#top-markets-header {
+    font-family: "Barlow", sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--base-color);
+    text-align:center;
+    padding: 3em 0 1.5em 0;
+
+}
+#grey-box {
+    background-color: var(--light-grey);
+    border-radius: 5px;
+    padding: 0 3em 1.5em 3em;
 }
 
-/*#searchbtn:hover {*/
-/*    background-color: #e1e3d0;*/
-/*    color: var(--accent-color);*/
-/*    border-left-color: var(--base-color)!important;*/
-/*}*/
+.summary-col {
+    padding-top: 15px;
+}
+.see-more {
+    padding-right: 3px;
+}

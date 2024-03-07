@@ -35,7 +35,7 @@ data = [{
         "id": "3",
         "market_name": "Seeds in the Middle - Flatbush - Hillel Plaza Farm Stand",
         "borough": "Brooklyn",
-        "image": "https://bklyner.com/content/images/bklyner/wp-content/uploads/2020/07/7FD78C1A-F7B9-4878-B01C-76678E710F4F-rotated-e1601416417736.jpeg",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.vox-cdn.com%2Fthumbor%2FVylRxiHt18mcTN20_1lpO0DKctQ%3D%2F0x0%3A4500x2994%2F1520x1140%2Ffilters%3Afocal(1890x1137%3A2610x1857)%2Fcdn.vox-cdn.com%2Fuploads%2Fchorus_image%2Fimage%2F65219436%2F6329735393_3a905a118a_o.0.jpg&f=1&nofb=1&ipt=3d809bdda320505110a9841641c27acd29a69a2b95bd1c907740485eacb708b9&ipo=images",
         "street_address": "Flatbush/Nostrand Triangle",
         "days": ["Wednesday"],
         "year_round": "false",

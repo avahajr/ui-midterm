@@ -9,7 +9,7 @@
 
     <li class="listing">
         <div class="title">
-            <a href="/view/{{ result['id'] }}">{{ result['market_name'] | safe }}</a>
+            <a class="text-success" href="/view/{{ result['id'] }}">{{ result['market_name'] | safe }}</a>
         </div>
         <div class="grey">
             {{result['vendors_list'] | safe }}

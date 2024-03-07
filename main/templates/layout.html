@@ -52,17 +52,22 @@
             <form class="input-group w-50" role="search">
                 <input id="searchbar" class="form-control" type="search" placeholder="find markets..."
                        aria-label="search">
-                <button class="input-group-append btn btn-success" id="searchbtn"><i
+                <button class="input-group-append btn btn-warning" id="searchbtn"><i
                         class="bi bi-search"></i></button>
             </form>
         </div>
     </div>
 </nav>
 
-
-<div id='content' class="container">
-    {% block content %}
-    {% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div id='content' class="col">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="col-1"></div>
+    </div>
 </div>
 
 </body>

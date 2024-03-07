@@ -4,11 +4,41 @@
 <div class="row">
     <div id="big-block" class="d-flex flex-column">
         <div id="header-text" class="text-uppercase">
-            Fresh, local fruits and veggies
+            <div>Fresh, local fruits</div>
+            <div> and veggies.</div>
         </div>
         <div id="header-caption">
             Find farmers' markets near you.
         </div>
+    </div>
+    <div id="grey-box">
+        <div id="top-markets-header" class="text-uppercase">Today's top markets</div>
+        <div class="entry row">
+            {% for entry in top3 %}
+            <div class="col align-items-start">
+                <a href="/view/{{entry['id']}}"><img src="{{entry['image']}}" class="preview img-fluid"
+                                                     alt="{{entry['market_name']}}"></a>
+                <div class="bold grey">{{entry['market_name']}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="entry row">
+            {% for entry in top3 %}
+            <div class="summary-col d-flex flex-column col align-items-start grey">
+                <div>{{" ".join(entry['summary'].split()[:30]) + ' ...'}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="entry row">
+            {% for entry in top3 %}
+            <div class="d-flex flex-column col align-items-start grey">
+                 <a class="see-more text-dark align-self-end" href="/view/{{entry['id']}}">See more</a>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
     </div>
 </div>
 {% endblock %}
