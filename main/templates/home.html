@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h2>Top 3 markets:</h2>
-<ul >
-    {% for top in top3 %}
-
-    <li><a href="/view/{{top['id']}}">{{top['market_name']}}</a></li>
-
-    {% endfor %}
-</ul>
-
+<div class="row">
+    <div id="big-block" class="d-flex flex-column">
+        <div id="header-text" class="text-uppercase">
+            Fresh, local fruits and veggies
+        </div>
+        <div id="header-caption">
+            Find farmers' markets near you.
+        </div>
+    </div>
+</div>
 {% endblock %}

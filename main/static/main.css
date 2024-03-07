@@ -1,20 +1,64 @@
 
 :root {
-    --accent-color: #57A070;
+    --background: #e1e3d0;
+    --base-color: #5e8d66;
+    --accent-color: #e4d444;
+    --other-green: #aab164;
+    /*font-family: "Barlow", sans-serif!important;*/
 }
+
 
 .warning {
     color: red;
 }
+
 #content {
     margin-top: 3em;
 }
+
+#navbarNavAltMarkup {
+    gap: 20px
+}
+
+.navbar-brand {
+    font-family: "Barlow", sans-serif;
+    font-weight: 700;
+    color: var(--base-color) !important;
+}
+
 #navbar {
-    height: 10em;
+    background-color: white;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(194, 194, 194, 0.28);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(194, 194, 194, 0.28);
+    box-shadow: 0px 1px 5px 0px rgba(194, 194, 194, 0.28);
+    border-bottom-color: gray !important;
 }
 
 .search_hit {
-    background-color: lightgreen!important;
+    background-color: lightgreen !important;
+}
+
+#header-text {
+    font-family: "Barlow", sans-serif!important;
+    color: rgba(0, 0, 0, .7);
+    font-size: 60px;
+    font-weight: 500;
+}
+#header-caption {
+    font-family: "Barlow", sans-serif!important;
+    color: rgba(0, 0, 0, .5);
+    font-size: 25px;
+    font-weight: 400;
+}
+
+#big-block {
+    background-color: #e1e3d0;
+    border-radius: 5px;
+    padding: 110px 140px;
+    width:  95%;
+    display: flex;
+    margin:auto;
+    gap: 5px;
 }
 
 .listing {
@@ -28,27 +72,35 @@
 .grey {
     color: var(--bs-gray);
 }
+
 .indent {
     margin-left: 2em;
 }
-.accent {
-    color:var(--accent-color)!important
+
+.base {
+    color: var(--base-color) !important
 }
+
 .bold {
     font-weight: 500;
 }
+
 .slim {
     font-weight: 200;
 }
+
 #view_year_round {
     font-size: smaller;
 }
+
 #view_days {
     font-size: 20px;
 }
+
 #view_borough {
     font-size: large;
 }
+
 #view_address_info {
     margin-top: 3em;
 }
@@ -57,23 +109,43 @@
     font-size: 26px;
     color: var(--bs-gray-dark)
 }
+
 #view_vendor_heading {
     font-size: 26px;
     color: var(--bs-gray-dark)
 
 }
+
 .view_vendor {
     color: var(--bs-gray-dark);
     font-size: 20px;
     margin-top: 5px;
 }
+
 #view_vendors_list {
     margin-top: .5em;
 }
+
 #view_second_row {
     margin-top: 3.5em;
 }
+
 #view_summary {
     text-align: justify;
     font-size: 18px;
 }
+
+/*#searchbar {*/
+/*    background-color: #e1e3d0;*/
+/*}*/
+#searchbtn {
+    color: var(--background);
+    background-color: var(--base-color);
+    border-color: #e1e3d0;
+}
+
+/*#searchbtn:hover {*/
+/*    background-color: #e1e3d0;*/
+/*    color: var(--accent-color);*/
+/*    border-left-color: var(--base-color)!important;*/
+/*}*/
