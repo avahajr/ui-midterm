@@ -5,38 +5,50 @@
     <div class="col-7">
         <div class="d-flex justify-content-between align-items-center">
             <h2>{{entry['market_name']}}</h2>
-            <div class='slim grey' id="view_borough">{{entry['borough']}}</div>
+            {% if entry['year_round'] == 'true'%}
+            <div id='view_year_round' class="base bold">YEAR-ROUND</div>
+            {% endif %}
+
         </div>
         <div class=" d-flex justify-content-between align-items-center">
-            <div class="grey" id="view_days">{{formatted_days}}</div>
+            <div class='slim grey' id="view_borough">{{entry['borough']}}</div>
             <div>
-                <div class="d-flex flex-column justify-content-center">
+                <div class="d-flex flex-column justify-content-right">
                     <div class="text-center">8am-4pm</div>
-                    {% if entry['year_round'] == 'true'%}
-                    <div id='view_year_round' class="base bold">YEAR-ROUND</div>
-                    {% endif %}
+                    <div class="grey" id="view_days">{{formatted_days}}</div>
                 </div>
             </div>
         </div>
         <br>
-        <div class="row">
+
+    </div>
+    <div class="col d-flex align-items-end justify-content-end">
+        <a href="/edit/{{entry['id']}}">
+            <button type="button" id="edit-button" class="btn btn-sm btn-outline-dark">Edit this listing</button>
+        </a>
+    </div>
+    <!--    row 2: image-->
+    <div class="row">
+        <div class="col-7">
             <img src="{{entry['image']}}" class="img-fluid" alt="{{entry['market_name']}}">
         </div>
-    </div>
-    <div class="col-1"></div>
-    <div class="col-4">
-        <img src="/static/sample-map.jpg" class="img-fluid">
-        <div class="d-flex justify-content-center align-items-center">
-            <div id="view_address_info">
-                <div id="view_street_address" class="bold">{{entry['street_address']}}</div>
-                <div id="view_distance" class="slim grey">0.2 miles away</div>
-                <div id="view_walk_info" class="">
-                    <span class='grey' id="view_walk_time">3 min. walk</span> |
-                    <a class="base bold">DIRECTIONS</a>
+        <div class="col-1"></div>
+        <div id='view-map-col' class="col-4 d-flex flex-column justify-content-between">
+            <img alt='sample-map' src="/static/sample-map.jpg" class="img-fluid">
+            <div class="d-flex justify-content-center align-items-center">
+                <div id="view_address_info">
+                    <div id="view_street_address" class="bold">{{entry['street_address']}}</div>
+                    <div id="view_distance" class="slim grey">0.2 miles away</div>
+                    <div id="view_walk_info" class="">
+                        <span class='grey' id="view_walk_time">3 min. walk</span> |
+                        <a class="base bold">DIRECTIONS</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
+
 
     <div id="view_second_row" class="row">
         <div class="col-3">

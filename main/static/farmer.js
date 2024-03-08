@@ -32,7 +32,7 @@ function isValidSearchTerm(search_term) {
     return true
 }
 
-async function validateEntry() {
+async function validateFormInputs() {
     $(".warning").empty();
     $("#success-msg").empty();
 
@@ -121,7 +121,7 @@ async function validateEntry() {
     }
 
     if (isValid) {
-        let newEntry = {
+        return {
             market_name: market_name,
             borough: $("#borough").val(),
             image: image,
@@ -134,33 +134,55 @@ async function validateEntry() {
             year_round: year_round,
             summary: summary,
         };
-        console.log('Validation successful. Adding entry:', newEntry);
-        $.ajax({
-            url: '/add',
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(newEntry),
-            success: function (data) {
-                console.log("successfully submitted", data)
-                // clear all data fields
-                $("#add_market")[0].reset();
-                $("#market_name").focus();
-                updateMessage(newEntry['market_name'], data['current_id'])
-            },
-            error: function (e) {
-                console.error("while input was valid, there was an error adding new market:", e)
-            }
-        });
     } else {
         console.error('something was wrong with the input.')
+        return null;
     }
 }
 
 function updateMessage(entry_name, entry_id) {
     // use on submitting a new entry
     $("#success-msg").append($(`<div class='alert alert-success' role='alert'>Successfully added ${entry_name}. <div><a href='/view/${entry_id}'>view new entry</a></div></div>`))
+}
+
+function addEntry(newEntry) {
+    console.log('Validation successful. Adding entry:', newEntry);
+    $.ajax({
+        url: '/add',
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(newEntry),
+        success: function (data) {
+            console.log("successfully submitted", data)
+            // clear all data fields
+            $("#add_market")[0].reset();
+            $("#market_name").focus();
+            updateMessage(newEntry['market_name'], data['current_id'])
+        },
+        error: function (e) {
+            console.error("while input was valid, there was an error adding new market:", e)
+        }
+    });
+}
+
+function updateEntry(entry, listing_id) {
+    $.ajax({
+        url: `/edit/${listing_id}`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(entry),
+        success: function (response) {
+            console.log(`successfully updated entry with id ${listing_id}:`, entry)
+            console.log('updated data:', response['data']);
+            // when we successfully update, we redirect
+            window.location.href = `/view/${listing_id}`
+        },
+        error: function (e) {
+            console.error("although input was valid, there was an error updating the entry. id", listing_id, "entry", entry);
 
 
+        }
+    })
 }
 
 $(document).ready(function () {
@@ -179,6 +201,22 @@ $(document).ready(function () {
 
     $("#add-entry-btn").click(function (e) {
         e.preventDefault();
-        validateEntry();
+        validateFormInputs().then(function (entry) {
+            if (entry !== null) {
+                addEntry(entry)
+            }
+        });
+    })
+
+    $("#submit-changes-btn").click(function (e) {
+        e.preventDefault();
+        validateFormInputs().then(function (entry) {
+            if (entry !== null) {
+                let listing_id = $('#edit_market').data("listing-id");
+                console.log(listing_id)
+                updateEntry(entry, listing_id);
+            }
+        })
     })
 })
+

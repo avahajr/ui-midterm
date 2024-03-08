@@ -146,6 +146,7 @@ def get_results(search_term):
             search_term.lower() in record['market_name'].lower() or search_term.lower() in " ".join(
                 record['vendors_list']).lower()]
 
+
 def format_days_of_week(day_list):
     if not day_list:
         return "No days provided"
@@ -159,6 +160,8 @@ def format_days_of_week(day_list):
     formatted_days += f" and {plural_days[-1]}"
 
     return formatted_days
+
+
 # ROUTES
 # Home page
 @app.route('/')
@@ -174,8 +177,12 @@ def search(search_term):
     for result in results:
         highlighted_results.append({
             "id": result['id'],
-            "market_name": re.sub(re.compile(re.escape(search_term), re.IGNORECASE), lambda match: f"<span class='search_hit'>{match.group()}</span>", result['market_name']),
-            "vendors_list": re.sub(re.compile(re.escape(search_term), re.IGNORECASE), lambda match: f"<span class='search_hit'>{match.group()}</span>", ", ".join(result['vendors_list']))
+            "market_name": re.sub(re.compile(re.escape(search_term), re.IGNORECASE),
+                                  lambda match: f"<span class='search_hit'>{match.group()}</span>",
+                                  result['market_name']),
+            "vendors_list": re.sub(re.compile(re.escape(search_term), re.IGNORECASE),
+                                   lambda match: f"<span class='search_hit'>{match.group()}</span>",
+                                   ", ".join(result['vendors_list']))
         })
 
     return render_template('search.html', msg=msg, results=highlighted_results)
@@ -221,16 +228,45 @@ def add_entry():
     else:
         # Render the form for GET request
         return render_template('add.html')
+
+
 @app.route('/edit/<rec_id>', methods=['GET', 'POST'])
 def edit_entry(rec_id):
-    if request.method == 'GET':
-        entry_to_edit = None
-        for entry in data:
-            if entry['id'] == rec_id:
-                entry_to_edit = entry
-                break
+    global current_id
+    entry_to_edit = None
+    i = 0
+    for entry in data:
+        if entry['id'] == rec_id:
+            entry_to_edit = entry
+            break
+        i += 1
 
+    if request.method == 'GET':
         return render_template('edit.html', entry=entry_to_edit)
+    else:  # request is a POST
+        json_data = request.get_json()
+
+        updated_entry = {
+            "id": str(rec_id),
+            "market_name": json_data.get('market_name'),
+            "borough": json_data.get('borough'),
+            "image": json_data.get('image'),
+            "street_address": json_data.get('street_address'),
+            "zip": json_data.get('zip'),
+
+            "days": json_data.get('days'),
+            "year_round": json_data.get('year_round'),
+            "latitude": json_data.get('latitude'),
+            "longitude": json_data.get('longitude'),
+            "vendors_list": [v.strip() for v in json_data.get('vendors_list')],
+            "summary": json_data.get('summary')
+        }
+
+        data[i] = updated_entry
+
+        return jsonify({'data': data, 'current_id': current_id})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=6969)

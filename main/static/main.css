@@ -4,7 +4,7 @@
     --base-color: #5e8d66;
     --accent-color: #ffc107;
     --button-hover: #699140;
-    --search-hit: rgba(169, 236, 103, 0.38);
+    --search-hit: rgba(169, 236, 103, 0.6);
     --light-grey: rgba(0, 0, 0, 0.04)
     /*--bs-font-sans-serif: "Barlow", sans-serif!important;*/
 }
@@ -46,6 +46,7 @@ img.preview {
 
 .search_hit {
     background-color: var(--search-hit) !important;
+    font-weight: 500;
 }
 
 #header-text {
@@ -114,13 +115,15 @@ img.preview {
     font-size: large;
 }
 
-#view_address_info {
-    margin-top: 3em;
-}
 
 #view_street_address {
     font-size: 26px;
     color: var(--bs-gray-dark)
+}
+#edit-button {
+    font-size: 12px;
+    height: fit-content;
+    margin: 2em;
 }
 
 #view_vendor_heading {
@@ -155,7 +158,7 @@ img.preview {
     font-weight: 600;
     color: var(--base-color);
     text-align:center;
-    padding: 3em 0 1.5em 0;
+    padding: 2em 0 1.5em 0;
 
 }
 #grey-box {
@@ -169,4 +172,5 @@ img.preview {
 }
 .see-more {
     padding-right: 3px;
+    padding-bottom: 1em;
 }
