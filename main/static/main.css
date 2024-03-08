@@ -4,7 +4,7 @@
     --base-color: #5e8d66;
     --accent-color: #ffc107;
     --button-hover: #699140;
-    --search-hit: rgba(169, 236, 103, 0.6);
+    --search-hit: rgba(255, 193, 7, 0.51);
     --light-grey: rgba(0, 0, 0, 0.04)
     /*--bs-font-sans-serif: "Barlow", sans-serif!important;*/
 }
@@ -76,7 +76,7 @@ img.preview {
 }
 
 .listing {
-    margin: 1em 0;
+    margin: 2em 0;
 }
 
 .listing .title {
@@ -184,4 +184,10 @@ img.preview {
 
 label.form-label {
     color: var(--bs-gray)
+}
+.search-address {
+    color: var(--bs-gray-600)
+}
+#search-msg {
+    font-size: 20px;
 }

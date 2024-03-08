@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<div id="msg">{{ msg }}</div>
+<div id="search-msg">{{ msg }}</div>
 <ul id="results">
     {% for result in results %}
 
@@ -11,6 +11,7 @@
         <div class="title">
             <a class="text-success" href="/view/{{ result['id'] }}">{{ result['market_name'] | safe }}</a>
         </div>
+        <div class="search-address bold">{{result['street_address'] | safe }}</div>
         <div class="grey">
             {{result['vendors_list'] | safe }}
         </div>

@@ -144,7 +144,7 @@ def get_results(search_term):
     global data
     return [record for record in data if
             search_term.lower() in record['market_name'].lower() or search_term.lower() in " ".join(
-                record['vendors_list']).lower()]
+                record['vendors_list']).lower() or search_term.lower() in record['street_address'].lower()]
 
 
 def format_days_of_week(day_list):
@@ -173,7 +173,7 @@ def home():
 def search(search_term):
     results = get_results(search_term)
     highlighted_results = []
-    msg = "No results found" if len(results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
+    msg = f"No results found for '{search_term}'" if len(results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
     for result in results:
         highlighted_results.append({
             "id": result['id'],
@@ -182,7 +182,10 @@ def search(search_term):
                                   result['market_name']),
             "vendors_list": re.sub(re.compile(re.escape(search_term), re.IGNORECASE),
                                    lambda match: f"<span class='search_hit'>{match.group()}</span>",
-                                   ", ".join(result['vendors_list']))
+                                   ", ".join(result['vendors_list'])),
+            "street_address": re.sub(re.compile(re.escape(search_term), re.IGNORECASE),
+                                   lambda match: f"<span class='search_hit'>{match.group()}</span>",
+                                   result['street_address'])
         })
 
     return render_template('search.html', msg=msg, results=highlighted_results)

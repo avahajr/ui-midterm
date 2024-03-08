@@ -100,6 +100,7 @@ async function validateFormInputs() {
                 dataType: 'json',
                 success: function (data) {
                     [lat, lng] = data['resourceSets'][0]['resources'][0]['point']['coordinates']
+                        // now, retrive the map and put it in the js
                 },
                 error: function (e) {
                     console.error("Error:", e)
