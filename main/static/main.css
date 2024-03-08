@@ -181,3 +181,7 @@ img.preview {
 #discard-changes-btn {
     margin-right: .25em;
 }
+
+label.form-label {
+    color: var(--bs-gray)
+}

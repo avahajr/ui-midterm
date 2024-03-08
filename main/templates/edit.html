@@ -50,14 +50,16 @@
 
     <!-- Image URL -->
     <div class="mb-3">
-        <label for="image" class="form-label">Image URL:</label>
+        <label for="image" class="form-label">Link to an image of this market:</label>
         <input type="text" class="form-control" id="image" name="image" value="{{entry['image']}}" required>
         <label for="image" class="warning"></label>
     </div>
 
     <!-- Days -->
     <div class="mb-3">
-        <label class="form-label">Days:</label>
+        <div>
+            <label class="form-label">Market days:</label>
+        </div>
         {% set days_checked = entry['days'] if entry['days'] else [] %}
 
         {% for day in ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %}
@@ -72,17 +74,17 @@
 
     <!-- Year Round -->
     <div class="mb-3">
-        <label class="form-label">Year-Round?:</label>
+        <label class="form-label">Is this market year-round?</label>
         <div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="year_round_true" name="year_round" value="true" {% if
                        entry['year_round'] == 'true' %} checked {% endif %}>
-                <label class="form-check-label" for="year_round_true">True</label>
+                <label class="form-check-label" for="year_round_true">Yes</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="year_round_false" name="year_round" value="false" {% if
                        entry['year_round'] == 'false' %} checked {% endif %}>
-                <label class="form-check-label" for="year_round_false">False</label>
+                <label class="form-check-label" for="year_round_false">No</label>
             </div>
         </div>
         <label class='warning' id="yearRoundWarning"></label>
@@ -92,7 +94,7 @@
 
     <!-- Vendors List -->
     <div class="mb-3">
-        <label class="form-label" for="vendors_list">Vendors:</label>
+        <label class="form-label" for="vendors_list">Vendors at this market (enter as a comma-separated list)</label>
         <input class="form-control" name="vendors_list" type="text" id="vendors_list"
                placeholder="abcef farms, wxyz orchard, ..." value="{{', '.join(entry['vendors_list'])}}">
         <label class="warning" id="vendors_list_warning"></label>
@@ -101,14 +103,15 @@
 
     <!-- Summary -->
     <div class="mb-3">
-        <label for="summary" class="form-label">Summary:</label>
+        <label for="summary" class="form-label">Write a bit about this market.</label>
         <textarea class="form-control" id="summary" name="summary" rows="4" required>{{entry['summary']}}</textarea>
         <label class="warning" id="summary_warning"></label>
     </div>
 
 </form>
 
-<button id="discard-changes-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Discard
+<button id="discard-changes-btn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Discard
     changes
 </button>
 <button id="submit-changes-btn" class="btn btn-primary">Submit</button>
@@ -126,7 +129,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't discard</button>
-                <a href="/view/{{entry['id']}}"><button type="button" id="do-discard" class="btn btn-danger">Yes, discard my changes</button></a>
+                <a href="/view/{{entry['id']}}">
+                    <button type="button" id="do-discard" class="btn btn-danger">Yes, discard my changes</button>
+                </a>
             </div>
         </div>
     </div>
