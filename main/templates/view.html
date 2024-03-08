@@ -17,6 +17,8 @@
             center: new Microsoft.Maps.Location({{entry['latitude']}}, {{entry['longitude']}}),
             zoom: 15
         });
+        var pin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
+            map.entities.push(pin);
     }
 </script>
 <div class="row">
@@ -24,7 +26,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <h2>{{entry['market_name']}}</h2>
             {% if entry['year_round'] == 'true'%}
-            <span id="view_year_round" class="text-uppercase base">Year-round</span>
+            <a href="/search/year-round" id="view_year_round" class="text-uppercase base">Year-round</a>
             {% endif %}
 
         </div>

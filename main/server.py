@@ -143,9 +143,12 @@ top3 = data[:3]
 def get_results(search_term):
     global data
     return [record for record in data if
-            search_term.lower() in record['market_name'].lower() or search_term.lower() in " ".join(
-                record['vendors_list']).lower() or search_term.lower() in record['street_address'].lower()]
-
+            search_term.lower() in record['market_name'].lower()
+            or search_term.lower() in " ".join(record['vendors_list']).lower()
+            or search_term.lower() in record['street_address'].lower()]
+def get_year_round_markets():
+    global data
+    return [record for record in data if record['year_round'].lower() == 'true']
 
 def format_days_of_week(day_list):
     if not day_list:
@@ -171,9 +174,12 @@ def home():
 
 @app.route('/search/<search_term>', methods=['GET'])
 def search(search_term):
-    results = get_results(search_term)
+    search_year_round = 'year' in search_term.lower() or 'round' in search_term.lower() or 'year-round' in search_term.lower()
+    year_round = get_year_round_markets() if search_year_round else []
+    results = get_results(search_term) + year_round
     highlighted_results = []
-    msg = f"No results found for '{search_term}'" if len(results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
+    msg = f"No results found for '{search_term}'" if len(
+        results) == 0 else f"Showing {len(results)} result(s) for '{search_term}'"
     for result in results:
         highlighted_results.append({
             "id": result['id'],
@@ -184,8 +190,9 @@ def search(search_term):
                                    lambda match: f"<span class='search_hit'>{match.group()}</span>",
                                    ", ".join(result['vendors_list'])),
             "street_address": re.sub(re.compile(re.escape(search_term), re.IGNORECASE),
-                                   lambda match: f"<span class='search_hit'>{match.group()}</span>",
-                                   result['street_address'])
+                                     lambda match: f"<span class='search_hit'>{match.group()}</span>",
+                                     result['street_address']),
+            'year_round': f"<span class='{'search_hit' if search_year_round else ''}'>YEAR-ROUND</span>"
         })
 
     return render_template('search.html', msg=msg, results=highlighted_results)
@@ -268,7 +275,6 @@ def edit_entry(rec_id):
         data[i] = updated_entry
 
         return jsonify({'data': data, 'current_id': current_id})
-
 
 
 if __name__ == '__main__':

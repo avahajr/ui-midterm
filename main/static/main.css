@@ -103,7 +103,7 @@ img.preview {
     font-weight: 200;
 }
 
-#view_year_round {
+#view_year_round, .year_round {
     font-size: smaller;
     font-weight: 600;
 }
