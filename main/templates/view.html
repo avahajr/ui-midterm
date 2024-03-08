@@ -3,18 +3,18 @@
 {% block content %}
 <div class="row">
     <div class="col-7">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
             <h2>{{entry['market_name']}}</h2>
             {% if entry['year_round'] == 'true'%}
-            <div id='view_year_round' class="base bold">YEAR-ROUND</div>
+            <span id="view_year_round" class="text-uppercase base">Year-round</span>
             {% endif %}
 
         </div>
-        <div class=" d-flex justify-content-between align-items-center">
+        <div class=" d-flex justify-content-between align-items-end">
             <div class='slim grey' id="view_borough">{{entry['borough']}}</div>
             <div>
                 <div class="d-flex flex-column justify-content-right">
-                    <div class="text-center">8am-4pm</div>
+                    <div id='view_time' class="text-end">8am-4pm</div>
                     <div class="grey" id="view_days">{{formatted_days}}</div>
                 </div>
             </div>

@@ -105,14 +105,17 @@ img.preview {
 
 #view_year_round {
     font-size: smaller;
+    font-weight: 600;
 }
 
 #view_days {
     font-size: 16px;
 }
-
+#view_time {
+    font-size: 18px;
+}
 #view_borough {
-    font-size: large;
+    font-size: 24px;
 }
 
 
@@ -127,7 +130,7 @@ img.preview {
 }
 
 #view_vendor_heading {
-    font-size: 26px;
+    font-size: 24px;
     color: var(--bs-gray-dark)
 
 }
@@ -172,5 +175,9 @@ img.preview {
 }
 .see-more {
     padding-right: 3px;
-    padding-bottom: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(255, 193, 7, 0.37);
+}
+#discard-changes-btn {
+    margin-right: .25em;
 }

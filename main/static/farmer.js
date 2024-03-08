@@ -179,8 +179,6 @@ function updateEntry(entry, listing_id) {
         },
         error: function (e) {
             console.error("although input was valid, there was an error updating the entry. id", listing_id, "entry", entry);
-
-
         }
     })
 }
